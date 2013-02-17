@@ -1,4 +1,4 @@
-function Card()
+function Card(cardname, carddesc)
 {
 	this.cardname = cardname; 
 	this.carddesc = carddesc;

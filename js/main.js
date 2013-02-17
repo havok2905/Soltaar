@@ -12,6 +12,23 @@ var shuffledDeck = deck.shuffleCards();
 var game = new Game(100, shuffledDeck.length);
 
 
-console.log(deck);
-console.log(shuffledDeck);
-console.log(game);
+$(document).ready(function()
+{
+	for(x=0; x<shuffledDeck.length; x++)
+	{
+		$("body").append("<div class='card' data-role=" + x + "></div>");
+	}
+
+	$(".card").click(function()
+	{
+		var cardname = shuffledDeck[$(this).attr("data-role")].getCardName();
+		var carddesc = shuffledDeck[$(this).attr("data-role")].getCardDesc();
+		
+		alert(cardname + "; " + carddesc);
+	});
+
+	console.log(deck);
+	console.log(shuffledDeck);
+	console.log(game);
+});
+

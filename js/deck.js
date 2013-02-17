@@ -71,5 +71,30 @@ Deck.prototype.getSelections = function()
 }
 
 
+// Sets an array of original cards in order
+Deck.prototype.setCards = function(crads)
+{
+	this.cards = cards;
+}
 
+
+// Gets an array of the original cards in order
+Deck.prototype.getCards = function()
+{
+	return this.cards;
+}
+
+
+// Sets a new shuffled array of cards
+Deck.prototype.setNewCards = function(newcards)
+{
+	this.newcards = newcards;
+}
+
+
+// Gets a new shuffled array of cards
+Deck.prototype.getNewCards = function()
+{
+	return this.newcards;
+}
 

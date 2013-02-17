@@ -1,15 +1,16 @@
-
-
-var cards = new Array();
-for(var x=0; x<10; x++)
-{
-	cards.push(x);
-}
-
+var score = 0; 
+var selections = new Array();
+	selections[0] = 0;
+	selections[1] = 0; 
+var cards = ["one", "one", "two", "two", "three", "three"];
 var newcards = shuffleCards(cards);
-console.log(newcards);
 
-function shuffleCards(cards)
+// test functions
+console.log(newcards);
+console.log(isMatch());
+console.log(score);
+
+function shuffleCards()
 {
 	// initialize variables 
 	var newcards = new Array(); // deck of newly shuffled cards 
@@ -43,3 +44,38 @@ function shuffleCards(cards)
 
 	return newcards; 
 }
+
+// checks if both selections are equal
+function isMatch()
+{
+	if(selections[0] == selections[1])
+	{
+		score++; 
+		return true;
+	}
+	else
+	{
+		return false; 
+	}
+}
+
+// sets selection array back to starting position
+function clearSelections()
+{
+	selections[0] = 0; 
+	selections[1] = 1; 
+}
+
+// check to see if the maximum amount of matches have been made
+function checkWin()
+{
+	if(score == cards.length/2)
+	{
+		return true; 
+	}
+	else
+	{
+		return false; 
+	}
+}
+

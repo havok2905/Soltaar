@@ -19,16 +19,35 @@ $(document).ready(function()
 		$("body").append("<div class='card' data-role=" + x + "></div>");
 	}
 
+	// Click event that handles all actions associated with selecting a card
 	$(".card").click(function()
 	{
 		var cardname = shuffledDeck[$(this).attr("data-role")].getCardName();
 		var carddesc = shuffledDeck[$(this).attr("data-role")].getCardDesc();
-		
-		alert(cardname + "; " + carddesc);
-	});
 
-	console.log(deck);
-	console.log(shuffledDeck);
-	console.log(game);
+		if(deck.selections[0] == 0 && deck.selections[1] == 0)
+		{
+			deck.selections[0] = cardname;
+		}
+		else if(deck.selections[0] != 0 && deck.selections[1] == 0)
+		{
+			deck.selections[1] = cardname;
+			if(deck.isMatch())
+			{
+				game.incrementScore(1);
+				console.log(game.getScore());
+			}
+			else
+			{
+				console.log("no match");
+			}
+
+			deck.setSelections(0, 0);
+		}
+		else
+		{
+			console.log("all selections filled");
+		}
+	});
 });
 

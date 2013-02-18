@@ -1,4 +1,8 @@
 
+/*
+*	Deck of cards JavaScript prototype to be used in a memory game
+* 	
+*/
 
 function Deck(cards)
 {

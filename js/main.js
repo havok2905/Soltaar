@@ -9,7 +9,7 @@ var cardsArray = new Array();
 
 var deck = new Deck(cardsArray);
 var shuffledDeck = deck.shuffleCards();
-var game = new Game(100, shuffledDeck.length);
+var game = new Game(100, shuffledDeck.length/2);
 
 
 $(document).ready(function()
@@ -29,29 +29,23 @@ function addEvents()
 	{
 		var cardname = shuffledDeck[$(this).attr("data-role")].getCardName();
 		var carddesc = shuffledDeck[$(this).attr("data-role")].getCardDesc();
-		
-		console.log("cardclick");
 
-		if(deck.selections[0] == 0 && deck.selections[1] == 0)
+		if(game.selections[0] == 0 && game.selections[1] == 0)
 		{
-			deck.selections[0] = cardname;
+			game.selections[0] = cardname;
 			$(this).unbind("click.handlecard");
 		}
-		else if(deck.selections[0] != 0 && deck.selections[1] == 0)
+		else if(game.selections[0] != 0 && game.selections[1] == 0)
 		{
-			deck.selections[1] = cardname;
+			game.selections[1] = cardname;
 			
-			if(deck.isMatch())
+			if(game.isMatch())
 			{
-				game.incrementScore(1);
+				game.incrementMatches({"name":cardname});
 				console.log(game.getScore());
 			}
-			else
-			{
-				console.log("no match");
-			}
 
-			deck.setSelections(0, 0);
+			game.setSelections(0, 0);
 			removeEvents();
 			addEvents();
 		}
@@ -59,6 +53,8 @@ function addEvents()
 		{
 			console.log("all selections filled");
 		}
+
+		console.log(game.checkWin());
 	});
 }
 

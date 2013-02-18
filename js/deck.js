@@ -6,7 +6,6 @@
 
 function Deck(cards)
 {
-	this.selections = [0, 0]; 
 	this.cards = cards; 
 	this.newcards = new Array();
 };
@@ -46,35 +45,6 @@ Deck.prototype.shuffleCards = function()
 }
 
 
-// Checks if both selections are equal
-Deck.prototype.isMatch = function()
-{
-	if(this.selections[0] == this.selections[1])
-	{
-		return true;
-	}
-	else
-	{
-		return false; 
-	}
-}
-
-
-// Sets selection indexes with two values
-Deck.prototype.setSelections = function(val_one, val_two)
-{
-	this.selections[0] = val_one; 
-	this.selections[1] = val_two; 
-}
-
-
-// Returns selections array
-Deck.prototype.getSelections = function()
-{
-	return this.selections;
-}
-
-
 // Sets an array of original cards in order
 Deck.prototype.setCards = function(crads)
 {
@@ -101,4 +71,3 @@ Deck.prototype.getNewCards = function()
 {
 	return this.newcards;
 }
-

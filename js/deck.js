@@ -1,7 +1,8 @@
 
 /*
 *	Deck of cards JavaScript prototype to be used in a memory game
-* 	
+* 	@author Christopher McLean
+* 	@param cards
 */
 
 function Deck(cards)

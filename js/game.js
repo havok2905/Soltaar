@@ -1,3 +1,10 @@
+
+/*
+*	Game State JavaScript prototype to be used in a memory game
+* 	@author Christopher McLean
+* 	@param timeleft
+	@param matchlimit
+*/
 function Game(timeleft, matchlimit)
 {
 	this.score = 0;
@@ -8,42 +15,49 @@ function Game(timeleft, matchlimit)
 }
 
 
+// Returns the score as an int
 Game.prototype.getScore = function()
 {
 	return this.score;
 }
 
 
+// Sets the score as an int 
 Game.prototype.setScore = function(score)
 {
 	this.score = score; 
 }
 
 
+// Adds a value to the score
 Game.prototype.incrementScore = function(score)
 {
 	this.score += score; 
 }
 
 
+// Returns the amount of matches needed to win a game
 Game.prototype.getMatchLimit = function()
 {
 	return this.matchlimit;
 }
 
 
+// Sets the amount of matches needed to win a game
 Game.prototype.setMatchLimit = function(matchlimit)
 {
 	this.matchlimit = matchlimit; 
 }
 
 
+// Returns the amount of time left as an int in seconds
 Game.prototype.getTimeLeft = function()
 {
 	return this.timeleft;
 }
 
 
+// Sets the amount of time left 
 Game.prototype.setTimeLeft = function(timeleft)
 {
 	this.timeleft = timeleft; 

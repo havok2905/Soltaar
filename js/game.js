@@ -33,6 +33,7 @@ Game.prototype.dealCards = function(deck)
 		}
 
 		$("#" + id).append("<li class='card' data-role=" + x + "></li>");
+		$("#" + id + " > li").html("<figure class='front'>1</figure><figure class='back'>2</figure>");
 	}
 }
 
@@ -174,13 +175,18 @@ Game.prototype.checkWin = function()
 {
 	if(this.matches.length == this.matchlimit)
 	{
-		this.setMatches(new Array);
-		this.setScore(0);
 		return true;
 	}
 	else
 	{
 		return false; 
 	}
+}
+
+Game.prototype.resetGame = function()
+{
+	this.setMatches(new Array);
+	this.setScore(0);
+	this.setSelections(0, 0);
 }
 

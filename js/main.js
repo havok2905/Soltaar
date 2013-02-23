@@ -37,9 +37,12 @@ function addEvents()
 		{
 			game.selections[0] = cardname;
 			$(this).unbind("click.handlecard");
+			$(this).addClass("flipped");
 		}
 		else if(game.selections[0] != 0 && game.selections[1] == 0) // Second Selections
 		{
+			$(this).addClass("flipped");
+
 			game.selections[1] = cardname;
 			
 			// If a match is found, push to the match array which also increments score
@@ -47,9 +50,22 @@ function addEvents()
 			{
 				game.incrementMatches({"name":cardname});
 			}
+			else
+			{
+				console.log("nope");
+			}
 
 			// Reset selection and events
-			game.setSelections(0, 0);
+			setTimeout(function()
+			{
+				if(game.isMatch())
+				{
+					$(".flipped").addClass("match");
+				}
+				
+				$(".flipped").removeClass("flipped");
+				game.setSelections(0, 0);
+			},1000);
 			
 			// FIX THIS TO WORK WITH INDIVIDUAL CARDS
 			removeEvents();
@@ -60,7 +76,14 @@ function addEvents()
 			console.log("all selections filled");
 		}
 
-		console.log(game.checkWin());
+		if(game.checkWin())
+		{
+			alert("you win");
+			$(".match").removeClass("match");
+			$(".flipped").removeClass("flipped");
+			game.resetGame();
+		}
+
 	});
 }
 

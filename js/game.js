@@ -5,13 +5,49 @@
 * 	@param timeleft
 	@param matchlimit
 */
-function Game(timeleft, matchlimit)
+function Game(timeleft, matchlimit, grid)
 {
-	this.score = 0;
-	this.matchlimit = matchlimit; 
-	this.timeleft = timeleft;  
-	this.selections = [0, 0];
-	this.matches = new Array();
+	this.score = 0;						// Record of a games score
+	this.matchlimit = matchlimit; 		// Maximum number of matches that can be made
+	this.timeleft = timeleft;  			// Length of a game in seconds
+	this.selections = [0, 0];			// Array of current selections in game
+	this.matches = new Array();			// Record of matches made during game
+	this.grid = grid;					// JSON object, Width X Height dimensions of the card grid
+}
+
+
+// Prints out cards to the screen
+Game.prototype.dealCards = function(deck)
+{
+	var width = this.grid.width;
+	var height = this.grid.height;
+	var idnum = 0;
+
+	for(x=0; x<deck.length; x++)
+	{
+		if(x % width == 0)
+		{  
+			var id = "row" + idnum;
+			$("#main").append("<ol class='row' id='" + id + "'></ol>");
+			idnum++;
+		}
+
+		$("#" + id).append("<li class='card' data-role=" + x + "></li>");
+	}
+}
+
+
+// Returns the grid as a JSON object
+Game.prototype.getGrid = function()
+{
+	return this.grid;
+}
+
+
+// Sets the grid as a JSON object 
+Game.prototype.setGrid = function(score)
+{
+	this.grid = grid; 
 }
 
 

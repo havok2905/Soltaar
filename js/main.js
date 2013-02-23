@@ -15,17 +15,11 @@ var deck = new Deck(cardsArray);
 var shuffledDeck = deck.shuffleCards();
 
 // Start a new game
-var game = new Game(100, shuffledDeck.length/2);
-
+var game = new Game(100, shuffledDeck.length/2, {"width":4, "height":2});
 
 $(document).ready(function()
 {
-	// Append cards to screen
-	for(x=0; x<shuffledDeck.length; x++)
-	{
-		$("body").append("<div class='card' data-role=" + x + "></div>");
-	}
-
+	game.dealCards(shuffledDeck);
 	addEvents();
 });
 

@@ -45,7 +45,6 @@ Deck.prototype.shuffleCards = function()
 	return this.newcards; 
 }
 
-
 // Sets an array of original cards in order
 Deck.prototype.setCards = function(crads)
 {

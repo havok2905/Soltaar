@@ -1,8 +1,16 @@
+body{
+	background-color: #5b737f;
+}
+
 #main{ 
-  width: 200px;
-  height: 260px;
+  width: 900px;
+  height: 460px;
   position: relative;
-  -webkit-perspective: 800px;
+  background-color: #e2e2e2;
+  -webkit-perspective: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
 }
 
 .card {

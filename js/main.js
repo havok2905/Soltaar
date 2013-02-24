@@ -55,7 +55,7 @@ function addEvents()
 				console.log("nope");
 			}
 
-			// Reset selection and events
+			// Reset selection and events after one second of delay
 			setTimeout(function()
 			{
 				if(game.isMatch())

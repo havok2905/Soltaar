@@ -1,25 +1,72 @@
-body{
-	background-color: #5b737f;
+body {
+  background-color: #5b737f;
 }
 
-#main{ 
-  width: 900px;
-  height: 460px;
+#main { 
+  width: 80%;
+  height: 80%;
   position: relative;
   background-color: #e2e2e2;
+  margin-top: 155px;
   -webkit-perspective: 900px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 3px;
+  margin-bottom:  40px;
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
+
+ol li {
+  display: inline-block;
+}
+
+#solTaar {
+  width: 100%;
+  margin: 0 auto;
+}
+
+h1 {
+  position: relative;
+  z-index: 500;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background: url(http://i.imgur.com/hc9RfDV.png) no-repeat center;
+  height: 278px;
+  width: 564px;
+
+  margin: 0 auto;
+  margin-bottom: -275px;
+  margin-top: 21px;
+}
+
+p {
+  font-family: 'verdana', sans-serif;
+  font-size: 19px;
+  padding: 120px 60px 80px 60px;
+}
+
+ul li {
+  display: inline;
+}
+
+/* Cards */
 
 .card {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 225px;
   -webkit-transform-style: preserve-3d;
   -webkit-transition: transform 1s;
+
+  margin: 2%;
+  font-family: 'verdana', sans-serif;
+  font-size: 6em;
+  line-height: 2.2em;
+  color: white;
+  text-indent: 29%;
 }
+
 
 .card figure {
   display: block;
@@ -30,18 +77,30 @@ body{
 }
 
 .card .front {
-  background: red;
+  background-color: #6D5B7F;
 }
 
 .card .back {
-  background: blue;
   -webkit-transform: rotateY( 180deg );
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 
 .card.flipped {
   -webkit-transform: rotateY( 180deg );
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  background-color: #2A2A2A;
 }
 
 .card.match {
-	visibility: hidden;
+  visibility: hidden;
 }
+
+

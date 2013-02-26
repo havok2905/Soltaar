@@ -1,5 +1,8 @@
 body {
   background-color: #5b737f;
+  color: #2A2A2A;
+    font-family: 'verdana', sans-serif;
+
 }
 
 #main { 
@@ -14,6 +17,14 @@ body {
   border-radius: 3px;
   margin-bottom:  40px;
   box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+ol {
+  text-align: center;
+}
+
+#menu {
+    text-align: center;
 }
 
 ol li {
@@ -41,13 +52,51 @@ h1 {
 }
 
 p {
-  font-family: 'verdana', sans-serif;
   font-size: 19px;
-  padding: 120px 60px 80px 60px;
+  padding: 150px 60px 60px 60px;
+}
+
+.tempDashboard {
+    display: inline-block;
+    margin-bottom: 40px;    
+    font-size: 17px;
+    text-align: center;
+
 }
 
 ul li {
+  padding: 0px 40px 0px 0px;
+}
+
+ul li:nth-child(2) {
+  color: #6D5B7F;
+}
+
+form {
   display: inline;
+
+}
+
+
+
+#submit {
+  background-color: #6D5B7F;
+  height: 32px;
+  border: 0px;
+  color: white;
+
+  font-size: 19px;
+}
+
+#skip {
+  width: 40px;
+  height: 30px;
+  color: #5b737f;
+  font-size: 19px;
+  margin-right: -2px;
+  border: 0 none;
+  text-align:  center;
+  outline: none;
 }
 
 /* Cards */
@@ -60,11 +109,13 @@ ul li {
   -webkit-transition: transform 1s;
 
   margin: 2%;
-  font-family: 'verdana', sans-serif;
   font-size: 6em;
   line-height: 2.2em;
   color: white;
-  text-indent: 29%;
+
+  -webkit-user-select: none;     
+  -moz-user-select: none; 
+  -ms-user-select: none;
 }
 
 

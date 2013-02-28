@@ -17,6 +17,8 @@ var shuffledDeck = deck.shuffleCards();
 // Start a new game
 var game = new Game(100, shuffledDeck.length/2, {"width":4, "height":2});
 
+var loc = 0;
+
 $(document).ready(function()
 {
 	game.dealCards(shuffledDeck);
@@ -67,7 +69,6 @@ function addEvents()
 				game.setSelections(0, 0);
 			},1000);
 			
-			// FIX THIS TO WORK WITH INDIVIDUAL CARDS
 			removeEvents();
 			addEvents();
 		}
@@ -84,6 +85,11 @@ function addEvents()
 			game.resetGame();
 		}
 
+	});
+
+	$(window).keydown(function(event)
+	{
+		console.log(location);
 	});
 }
 

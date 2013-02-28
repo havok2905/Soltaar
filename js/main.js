@@ -166,7 +166,7 @@ function addEvents()
 	});
 	
 	// Set up key press events.~
-	$(document.keydown(function(ev)
+	$(document).keydown(function(ev)
 	{
 
 		// Left and Right arrow keys:
@@ -198,5 +198,6 @@ function addEvents()
 function removeEvents()
 {
 	$(".card").unbind("click.handlecard");
+	$(".card").unbind('keydown', 'space');
 }
 

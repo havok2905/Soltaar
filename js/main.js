@@ -165,12 +165,12 @@ function addEvents()
 	});
 	
 	// Set up key press events.~
-	$(document).keydown(function(ev)
+	$(document).keydown(function(event)
 	{
-
 		// Left and Right arrow keys:
 
-		if(ev.which == $.ui.keyCode.RIGHT) {
+		if(event.keyCode == 39) {
+			console.log("right");
 			var focused = $("*:focus").attr("data-role");
 			if (focused >= 0 || focused < cardsArray.length -1)	{
 				setFocus(focused + 1);
@@ -178,17 +178,18 @@ function addEvents()
 			else	{
 				setFocus(0);
 			}
-			ev.preventDefault();
+			event.preventDefault();
 		}
-		if(ev.which == $.ui.keyCode.LEFT) {
+		if(event.keyCode == 37) {
+			console.log("left");
 			var focused = $("*:focus").attr("data-role");
 			if (focused > 0 || focused < cardsArray.length)	{
 				setFocus(focused -1);
 			}
 			else	{
-				setFocus(cardArray.length - 1);
+				setFocus(cardsArray.length - 1);
 			}
-			ev.preventDefault();
+			event.preventDefault();
 		}
 	});
 }

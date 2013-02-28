@@ -1,6 +1,6 @@
 
 /*
-*	Main JavaScript file for Solaar
+*	Main JavaScript file for Sol Taar
 */
 
 // Construct a new shuffled deck of cards
@@ -17,7 +17,24 @@ var shuffledDeck = deck.shuffleCards();
 // Start a new game
 var game = new Game(100, shuffledDeck.length/2, {"width":4, "height":2});
 
-var loc = 0;
+// Set focus to a card with data-role value data
+function setFocus(data)	
+{
+	$('*[data-role='+data+']').focus();
+}
+
+// Card selector input box controller
+$("#submit").click(function()
+{
+	var data = $("#skip").val();
+	
+	if (data < cardsArray.length)	{
+		setFocus(data);
+		$("#skip").val("");
+	}
+	
+	return false;
+});
 
 $(document).ready(function()
 {
@@ -86,15 +103,99 @@ function addEvents()
 		}
 
 	});
-
-	$(window).keydown(function(event)
+	
+	// Spacebar, same as above click handler, Sherry is just being a lazy ass.  LAZY ASS: CLEAN THIS UP LATER, YOU FOOL.
+	$(".card").bind('keydown', 'space', function ()
 	{
-		console.log(location);
+		// initialize variables that contain the card's properties
+			var cardname = shuffledDeck[$(this).attr("data-role")].getCardName();
+			var carddesc = shuffledDeck[$(this).attr("data-role")].getCardDesc();
+
+			// Check to see if it is the user's first or second selection and fill that slot with a card
+			if(game.selections[0] == 0 && game.selections[1] == 0) // First Selection
+			{
+				game.selections[0] = cardname;
+				$(this).unbind("click.handlecard");
+				$(this).addClass("flipped");
+			}
+			else if(game.selections[0] != 0 && game.selections[1] == 0) // Second Selections
+			{
+				$(this).addClass("flipped");
+
+				game.selections[1] = cardname;
+				
+				// If a match is found, push to the match array which also increments score
+				if(game.isMatch())
+				{
+					game.incrementMatches({"name":cardname});
+				}
+				else
+				{
+					console.log("nope");
+				}
+
+				// Reset selection and events after one second of delay
+				setTimeout(function()
+				{
+					if(game.isMatch())
+					{
+						$(".flipped").addClass("match");
+					}
+					
+					$(".flipped").removeClass("flipped");
+					game.setSelections(0, 0);
+				},1000);
+				
+				// FIX THIS TO WORK WITH INDIVIDUAL CARDS
+				removeEvents();
+				addEvents();
+			}
+			else
+			{
+				console.log("all selections filled");
+			}
+
+			if(game.checkWin())
+			{
+				alert("you win");
+				$(".match").removeClass("match");
+				$(".flipped").removeClass("flipped");
+				game.resetGame();
+			}
+	});
+	
+	// Set up key press events.~
+	$(document).keydown(function(ev)
+	{
+
+		// Left and Right arrow keys:
+
+		if(ev.which == $.ui.keyCode.RIGHT) {
+			var focused = $("*:focus").attr("data-role");
+			if (focused >= 0 || focused < cardsArray.length -1)	{
+				setFocus(focused + 1);
+			}
+			else	{
+				setFocus(0);
+			}
+			ev.preventDefault();
+		}
+		if(ev.which == $.ui.keyCode.LEFT) {
+			var focused = $("*:focus").attr("data-role");
+			if (focused > 0 || focused < cardsArray.length)	{
+				setFocus(focused -1);
+			}
+			else	{
+				setFocus(cardArray.length - 1);
+			}
+			ev.preventDefault();
+		}
 	});
 }
 
 function removeEvents()
 {
 	$(".card").unbind("click.handlecard");
+	$(".card").unbind('keydown', 'space');
 }
 

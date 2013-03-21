@@ -153,7 +153,7 @@ return array(
 		 *
 		 * Note: MUST BE DEFINED IN THE APP CONFIG FILE!
 		 */
-		//'uri_filter'       => array(),
+		'uri_filter'       => array(),
 
 		/**
 		 * This input filter can be any normal PHP function as well as 'xss_clean'
@@ -163,7 +163,7 @@ return array(
 		 *
 		 * Note: MUST BE DEFINED IN THE APP CONFIG FILE!
 		 */
-		//'input_filter'  => array(),
+		'input_filter'  => array(),
 
 		/**
 		 * This output filter can be any normal PHP function as well as 'xss_clean'
@@ -173,7 +173,7 @@ return array(
 		 *
 		 * Note: MUST BE DEFINED IN THE APP CONFIG FILE!
 		 */
-		//'output_filter'  => array(),
+		'output_filter'  => array(),
 
 		/**
 		 * Encoding mechanism to use on htmlentities()

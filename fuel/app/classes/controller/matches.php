@@ -132,5 +132,18 @@ class Controller_Matches extends Controller_Template
 
 	}
 
+	// OUR CONTROLLER FOR BRINGING UP A MATCH
+	public function action_play($id = null)
+	{
+		is_null($id) and Response::redirect('Matches');
+		
+		if ( ! $data['match'] = Model_Match::find($id))
+		{
+			Session::set_flash('error', 'Could not find match #'.$id);
+			Response::redirect('Matches');
+		}
 
+		$this->template->title = "Match";
+		$this->template->content = View::forge('matches/play', $data);
+	}
 }

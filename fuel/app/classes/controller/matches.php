@@ -137,11 +137,11 @@ class Controller_Matches extends Controller_Template
 	{
 		is_null($id) and Response::redirect('Matches');
 		
-		if ( ! $data['match'] = Model_Match::find($id))
-		{
-			Session::set_flash('error', 'Could not find match #'.$id);
-			Response::redirect('Matches');
-		}
+		$match = DB::select()->from('matches')->where('id', $id)->execute();
+		$cards = DB::query("SELECT * FROM matchcards INNER JOIN cards ON matchcards.cardid = cards.id WHERE matchcards.matchid = $id")->execute();
+
+		$data['match'] = $match;
+		$data['cards'] = $cards;
 
 		$this->template->title = "Match";
 		$this->template->content = View::forge('matches/play', $data);

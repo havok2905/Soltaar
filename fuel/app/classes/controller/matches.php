@@ -139,9 +139,13 @@ class Controller_Matches extends Controller_Template
 		
 		$match = DB::select()->from('matches')->where('id', $id)->execute();
 		$cards = DB::query("SELECT * FROM matchcards INNER JOIN cards ON matchcards.cardid = cards.id WHERE matchcards.matchid = $id")->execute();
+		$user = DB::select('username')->from('users')->where('id', $match->owner);
+
+		var_dump($user);
 
 		$data['match'] = $match;
 		$data['cards'] = $cards;
+		$data['user'] = $user;
 
 		$this->template->title = "Match";
 		$this->template->content = View::forge('matches/play', $data);

@@ -7,7 +7,6 @@ class Controller_Matches extends Controller_Template
 		$data['matches'] = Model_Match::find('all');
 		$this->template->title = "Matches";
 		$this->template->content = View::forge('matches/index', $data);
-
 	}
 
 	public function action_view($id = null)

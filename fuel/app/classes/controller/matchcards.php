@@ -128,6 +128,4 @@ class Controller_Matchcards extends Controller_Template
 		Response::redirect('matchcards');
 
 	}
-
-
 }

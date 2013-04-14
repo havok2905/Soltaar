@@ -7,7 +7,6 @@ class Controller_Courses extends Controller_Template
 		$data['courses'] = Model_Course::find('all');
 		$this->template->title = "Courses";
 		$this->template->content = View::forge('courses/index', $data);
-
 	}
 
 	public function action_view($id = null)

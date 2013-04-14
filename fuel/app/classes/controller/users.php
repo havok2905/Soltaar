@@ -17,8 +17,30 @@ class Controller_Users extends Controller_Template
 
 	public function action_register()
 	{
-		$this->template->title = 'Users &raquo; Register';
-		$this->template->content = View::forge('users/register');
+		$auth = Auth::instance();
+		$view = View::forge('users/register');
+		$form = Fieldset::forge('register');
+		Model_User::register($form);
+
+		if(Input::post())
+		{
+			$form -> repopulate();
+			$result = Model_User::validate_registration($form, $auth);
+
+			if($result['e_found'])
+			{
+				$view -> set('errors', $result['errors'], false);
+			}
+			else
+	        {
+	            Session::set_flash('success', 'User created.');
+	            Response::redirect('./');
+	        }
+		}
+
+		$view->set('reg', $form->build(), false);
+		$this->template->title = 'User &raquo; Register';
+		$this->template->content = $view;
 	}
 
 }

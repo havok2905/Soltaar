@@ -45,7 +45,7 @@ class Controller_Users extends Controller_Template
 			if($auth->login(Input::post('username'), Input::post('password')))
 			{
 				Session::set_flash('success', 'Successfully logged in! Welcome '.$auth->get_screen_name());
-				Response::redirect('messages/');
+				Response::redirect('matches/');
 			}
 			else
 			{
@@ -68,7 +68,7 @@ class Controller_Users extends Controller_Template
 		$auth = Auth::instance();
 		$auth->logout();
 		Session::set_flash('success', 'Logged out.');
-		Response::redirect('messages/');
+		Response::redirect('matches/');
 	}
 }
 

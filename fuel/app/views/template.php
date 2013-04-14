@@ -28,7 +28,7 @@
 			There are two ways to select cards.  If you have a mouse, you can simply click on them to flip them.  Otherwise when using a keyboard, type in the numbers of the cards in the two text boxes.
 		</p>
 	</div>
-	
+
 	<!-- 0 gusts, 1 users, 50 teachers, 100 is admin -->
 	<!-- that will be in the group column -->
 	<!-- if roles < number..display whatever -->

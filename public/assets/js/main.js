@@ -5,12 +5,14 @@
 
 // Construct a new shuffled deck of cards
 var cardsArray = new Array();
-	cardsArray[0] = new Card("one", "a card with the number one on it");
-	cardsArray[1] = new Card("one", "a card with the number one on it");
-	cardsArray[2] = new Card("two", "a card with the number two on it");
-	cardsArray[3] = new Card("two", "a card with the number two on it");
-	cardsArray[4] = new Card("three", "a card with the number three on it");
-	cardsArray[5] = new Card("three", "a card with the number three on it");
+	cardsArray[0] = new Card("bear", "a card with a red circle on it");
+	cardsArray[1] = new Card("pig", "a card with a red circle on it");
+	cardsArray[2] = new Card("cat", "a card with a yellow triangle on it");
+	cardsArray[3] = new Card("ladybug", "a card with a yellow triangle on it");
+	cardsArray[4] = new Card("fox", "a card with a green diamond on it");
+	cardsArray[5] = new Card("lion", "a card with a green diamond on it");
+	cardsArray[6] = new Card("rat", "a card with a purple box on it");
+	cardsArray[7] = new Card("bear", "a card with a purple box on it");
 var deck = new Deck(cardsArray);
 var shuffledDeck = deck.shuffleCards();
 
@@ -40,17 +42,6 @@ $(document).ready(function()
 {
 	game.dealCards(shuffledDeck);
 	addEvents();
-
-	//Accordian stuff
-
-	 var allPanels = $('.accordion > dd').hide();
-    
-	  $('.accordion > dt > a').click(function() {
-	    allPanels.slideUp();
-	    $(this).parent().next().slideDown();
-	    return false;
-	  });
-
 });
 
 function addEvents()

@@ -22,21 +22,21 @@ Game.prototype.dealCards = function(deck)
 	var width = this.grid.width;
 	var height = this.grid.height;
 	var idnum = 0;
+	var name = '';
 
 	for(x=0; x<deck.length; x++)
 	{
+		name = deck[x].cardname;
 		if(x % width == 0)
 		{  
 			var id = "row" + idnum;
 			$("#main").append("<ol class='row' id='" + id + "'></ol>");
 			idnum++;
 		}
-
 		$("#" + id).append("<li class='card' data-role=" + x + "></li>");
-		$("#" + id + " > li").html("<figure class='front'>1</figure><figure class='back'>2</figure>");
+		$("#" + id + " > li").html("<figure class='front'><embed src='front.svg' type='image/svg+xml' /></figure><figure class='back'><embed src='"+name+".svg' type='image/svg+xml' /></figure>");
 	}
 }
-
 
 // Returns the grid as a JSON object
 Game.prototype.getGrid = function()

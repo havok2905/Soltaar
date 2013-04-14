@@ -3,55 +3,56 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
-	<?php echo Asset::css('bootstrap.css'); ?>
-	<style>
-		body { margin: 40px; }
-	</style>
+	<?php echo Asset::css('reset.css'); ?>
+	<?php echo Asset::css('main.css'); ?>
+	<?php echo Asset::js('jquery.js'); ?>
+	<?php echo Asset::js('jquery.hotkeys.js'); ?>
+	<?php echo Asset::js('card.js'); ?>
+	<?php echo Asset::js('deck.js'); ?>
+	<?php echo Asset::js('game.js'); ?>
+	<?php echo Asset::js('main.js'); ?>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="span16">
-				<h1><?php echo $title; ?></h1>
-				<hr>
-<?php
-	if(isset($user_info))
-	{
-		echo $user_info;
-	}
-	else
-	{
-		$link = array(Html::anchor("users/login", "Login"), Html::anchor("users/register", "Register"));
-		echo Html::ul($link);
-	}
-?>
+	<!-- Login/register div at the top if not logged in -->
+	<div class="logReg">
+		<!-- forge login/register stuff here-->
+	</div>
 
-<?php if (Session::get_flash('success')): ?>
-				<div class="alert-message success">
-					<p>
-					<?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
-					</p>
-				</div>
-<?php endif; ?>
-<?php if (Session::get_flash('error')): ?>
-				<div class="alert-message error">
-					<p>
-					<?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
-					</p>
-				</div>
-<?php endif; ?>
-			</div>
-			<div class="span16">
-<?php echo $content; ?>
-			</div>
-		</div>
-		<footer>
-			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
-			<p>
-				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
-				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
-			</p>
-		</footer>
+	<!-- if not logged in, display demo game info -->
+
+	<div id="text">
+		<p>
+			Sol Tarr is a memory game where paired cards are shuffled together and the objective is to select them pair by pair.  When the game starts you will be alerted to the order of the cards.  Afterwards, the cards will flip over and it's your job to flip them back over by their matching pairs.  
+		</p>
+		<p>
+			There are two ways to select cards.  If you have a mouse, you can simply click on them to flip them.  Otherwise when using a keyboard, type in the numbers of the cards in the two text boxes.
+		</p>
+	</div>
+	
+	<!-- 0 gusts, 1 users, 50 teachers, 100 is admin -->
+	<!-- that will be in the group column -->
+	<!-- if roles < number..display whatever -->
+	<!-- <div class="demoInfo"></div> -->
+	<div class="container">
+
+		<!-- Load in default match if ($match) -->
+
+		<?php echo View::forge('matches/play'); ?>
+	</div>
+
+	<!-- Use dummy data and begin to display stuff -->
+	<span class="tab"><!-- depending on teacher/admin/etc, change what this says --> Courses</span>
+	<div id="mainContent">
+		<!-- accordian  http://css-tricks.com/snippets/jquery/simple-jquery-accordion/  -->
+		<!-- ALso get a lightbox that lets you load in html or append some in through js -->
+		<span>Course Name -- Matches</span>
+		<!-- load in matches, name of match, description -->
+		<ul>
+			<h2>Match name</h2>
+			<p>Description sldfjsdl;fskfjdlsfj </p>
+			<!-- edit link. On click, append a modal and use an ajax call inside the appended stuff. Keep updated_at in mind -->
+			<!-- view will just play that specific matches/play/1 the match id is the number -->
+		</ul>
 	</div>
 </body>
 </html>

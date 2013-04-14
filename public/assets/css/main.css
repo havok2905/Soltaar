@@ -1,162 +1,162 @@
+/*
+for SVGs, scalability is difficult
+use background-size and its webkit prefixes
+*/
+
 body {
-  background-color: #5b737f;
-  color: #2A2A2A;
-    font-family: 'verdana', sans-serif;
+ background-color: #5b737f;
+ color: #2A2A2A;
+   font-family: 'verdana', sans-serif;
 
 }
 
 #main { 
-  width: 80%;
-  height: 80%;
-  position: relative;
-  background-color: #e2e2e2;
-  margin-top: 155px;
-  -webkit-perspective: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 3px;
-  margin-bottom:  40px;
-  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+ width: 80%;
+ height: 80%;
+ position: relative;
+ background-color: #e2e2e2;
+ margin-top: 155px;
+ -webkit-perspective: 900px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 3px;
+ margin-bottom:  40px;
+ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
 
 ol {
-  text-align: center;
+ text-align: center;
 }
 
 #menu {
-    text-align: center;
+   text-align: center;
 }
 
 ol li {
-  display: inline-block;
+ display: inline-block;
 }
 
 #solTaar {
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 200px;
+ width: 100%;
+ margin: 0 auto;
+ margin-bottom: 200px;
 }
 
 h1 {
-  position: relative;
-  z-index: 500;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  background: url(http://i.imgur.com/hc9RfDV.png) no-repeat center;
-  height: 278px;
-  width: 564px;
+ position: relative;
+ z-index: 500;
+ text-indent: 100%;
+ white-space: nowrap;
+ overflow: hidden;
+ background: url(http://i.imgur.com/hc9RfDV.png) no-repeat center;
+ height: 278px;
+ width: 564px;
 
-  margin: 0 auto;
-  margin-bottom: -275px;
-  margin-top: 21px;
+ margin: 0 auto;
+ margin-bottom: -275px;
+ margin-top: 21px;
 }
 
 #text{
-  padding-top: 100px;
+ padding-top: 100px;
 }
 
 p {
-  font-size: 19px;
-  padding: 0px 60px 30px 60px;
+ font-size: 19px;
+ padding: 0px 60px 30px 60px;
 }
 
 .tempDashboard {
-    display: inline-block;
-    margin-bottom: 40px;    
-    font-size: 17px;
-    text-align: center;
-
+   display: inline-block;
+   margin-bottom: 40px;    
+   font-size: 17px;
+   text-align: center;
 }
 
 ul li {
-  padding: 0px 40px 0px 0px;
+ padding: 0px 40px 0px 0px;
 }
 
 ul li:nth-child(2) {
-  color: #6D5B7F;
+ color: #6D5B7F;
 }
 
 form {
-  display: inline;
+ display: inline;
 
 }
 
-
-
 #submit {
-  background-color: #6D5B7F;
-  height: 32px;
-  border: 0px;
-  color: white;
+ background-color: #6D5B7F;
+ height: 32px;
+ border: 0px;
+ color: white;
 
-  font-size: 19px;
+ font-size: 19px;
 }
 
 #skip {
-  width: 40px;
-  height: 30px;
-  color: #5b737f;
-  font-size: 19px;
-  margin-right: -2px;
-  border: 0 none;
-  text-align:  center;
-  outline: none;
+ width: 40px;
+ height: 30px;
+ color: #5b737f;
+ font-size: 19px;
+ margin-right: -2px;
+ border: 0 none;
+ text-align:  center;
+ outline: none;
 }
 
 /* Cards */
 
 .card {
-  position: relative;
-  width: 150px;
-  height: 225px;
-  -webkit-transform-style: preserve-3d;
-  -webkit-transition: transform 1s;
+ position: relative;
+ width: 150px;
+ height: 225px;
+ -webkit-transform-style: preserve-3d;
+ -webkit-transition: transform 1s;
 
-  margin: 2%;
-  font-size: 6em;
-  line-height: 2.2em;
-  color: white;
+ margin: 2%;
+ font-size: 6em;
+ line-height: 2.2em;
+ color: white;
 
-  -webkit-user-select: none;     
-  -moz-user-select: none; 
-  -ms-user-select: none;
+ -webkit-user-select: none;     
+ -moz-user-select: none; 
+ -ms-user-select: none;
 }
 
 
 .card figure {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
+ display: block;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ -webkit-backface-visibility: hidden;
 }
 
 .card .front {
-  background-color: #6D5B7F;
+ background-color: #6D5B7F;
 }
 
 .card .back {
-  -webkit-transform: rotateY( 180deg );
-  -o-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  -moz-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+ -webkit-transform: rotateY( 180deg );
+ -o-transition: all .4s ease-in-out;
+ -ms-transition: all .4s ease-in-out;
+ -moz-transition: all .4s ease-in-out;
+ -webkit-transition: all .4s ease-in-out;
+ transition: all .4s ease-in-out;
 }
 
 .card.flipped {
-  -webkit-transform: rotateY( 180deg );
-  -o-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  -moz-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
-  background-color: #2A2A2A;
+ -webkit-transform: rotateY( 180deg );
+ -o-transition: all .4s ease-in-out;
+ -ms-transition: all .4s ease-in-out;
+ -moz-transition: all .4s ease-in-out;
+ -webkit-transition: all .4s ease-in-out;
+ transition: all .4s ease-in-out;
+ background-color: #2A2A2A;
 }
 
 .card.match {
-  visibility: hidden;
+ visibility: hidden;
 }
-
-

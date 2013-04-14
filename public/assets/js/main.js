@@ -40,6 +40,17 @@ $(document).ready(function()
 {
 	game.dealCards(shuffledDeck);
 	addEvents();
+
+	//Accordian stuff
+
+	 var allPanels = $('.accordion > dd').hide();
+    
+	  $('.accordion > dt > a').click(function() {
+	    allPanels.slideUp();
+	    $(this).parent().next().slideDown();
+	    return false;
+	  });
+
 });
 
 function addEvents()

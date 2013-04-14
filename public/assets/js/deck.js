@@ -25,28 +25,29 @@ Deck.prototype.shuffleCards = function()
 	// Fills new cards array with values of the cards array at random indexes
 	for(var x=0; x<this.cards.length; x++)
 	{	
+	
 		do
 		{
-			var newindex = Math.floor(Math.random() * this.cards.length); 
+			var newindex = Math.floor(Math.random() * this.cards.length	); 
 
 			if(this.newcards[newindex] == 0)
 			{
-				emptyslot = true; 
+				emptyslot = false; 
 				this.newcards[newindex] = this.cards[x];
 			}
 			else
 			{
-				emptyslot = false; 
+				emptyslot = true; 
 			}
 		}
-		while(emptyslot == false)
+		while(emptyslot == true)
 	}
 
 	return this.newcards; 
 }
 
 // Sets an array of original cards in order
-Deck.prototype.setCards = function(crads)
+Deck.prototype.setCards = function(cards)
 {
 	this.cards = cards;
 }

@@ -2,19 +2,6 @@
 
 class Controller_Users extends Controller_Template
 {
-
-	public function action_login()
-	{
-		$this->template->title = 'Users &raquo; Login';
-		$this->template->content = View::forge('users/login');
-	}
-
-	public function action_logout()
-	{
-		$this->template->title = 'Users &raquo; Logout';
-		$this->template->content = View::forge('users/logout');
-	}
-
 	public function action_register()
 	{
 		$auth = Auth::instance();
@@ -43,4 +30,46 @@ class Controller_Users extends Controller_Template
 		$this->template->content = $view;
 	}
 
+	public function action_login()
+	{
+		$view = View::forge('users/login');
+		$form = Form::forge('login');
+		$auth = Auth::instance();
+
+		$form->add('username', 'Username:');
+		$form->add('password', 'Password:', array('type'=>'password'));
+		$form->add('submit', ' ', array('type'=>'submit', 'value'=>'login'));
+
+		if(Input::post())
+		{
+			if($auth->login(Input::post('username'), Input::post('password')))
+			{
+				Session::set_flash('success', 'Successfully logged in! Welcome '.$auth->get_screen_name());
+				Response::redirect('messages/');
+			}
+			else
+			{
+				Session::set_flash('error', 'Username or password incorrect.');				
+			}
+		}
+		else
+		{
+			Session::set_flash('error', 'Username or password incorrect.');
+		}
+
+
+		$view->set('form', $form, false);
+		$this->template->title = 'User &raquo; Login';
+		$this->template->content = $view;
+	}
+
+	public function action_logout()
+	{
+		$auth = Auth::instance();
+		$auth->logout();
+		Session::set_flash('success', 'Logged out.');
+		Response::redirect('messages/');
+	}
 }
+
+

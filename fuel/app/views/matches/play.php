@@ -27,3 +27,9 @@
 		</ul>
 	</div>
 </div>
+
+
+<?php var_dump($match); //Array of match information?>
+<br/><br/><br/>
+<?php var_dump($user); //Array of match owner information?>
+

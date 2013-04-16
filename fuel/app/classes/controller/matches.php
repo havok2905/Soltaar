@@ -135,16 +135,12 @@ class Controller_Matches extends Controller_Template
 	public function action_play($id = null)
 	{
 		is_null($id) and Response::redirect('Matches');
-		
+
 		$match = DB::select()->from('matches')->where('id', $id)->execute();
-		$cards = DB::query("SELECT * FROM matchcards INNER JOIN cards ON matchcards.cardid = cards.id WHERE matchcards.matchid = $id")->execute();
-		$user = DB::select('username')->from('users')->where('id', $match->owner);
+		$user = DB::select('username')->from('users')->where('id', $match[0]['owner']);
 
-		var_dump($user);
-
-		$data['match'] = $match;
-		$data['cards'] = $cards;
 		$data['user'] = $user;
+		$data['match'] = $match;
 
 		$this->template->title = "Match";
 		$this->template->content = View::forge('matches/play', $data);

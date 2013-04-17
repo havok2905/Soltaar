@@ -36,6 +36,8 @@ class Controller_Matches extends Controller_Template
 					'time' => Input::post('time'),
 					'score' => Input::post('score'),
 					'owner' => Input::post('owner'),
+					'name' => Input::post('name'),
+					'description' => Input::post('description'),
 				));
 
 				if ($match and $match->save())
@@ -78,6 +80,8 @@ class Controller_Matches extends Controller_Template
 			$match->time = Input::post('time');
 			$match->score = Input::post('score');
 			$match->owner = Input::post('owner');
+			$match->name = Input::post('name');
+			$match->description = Input::post('description');
 
 			if ($match->save())
 			{
@@ -99,6 +103,8 @@ class Controller_Matches extends Controller_Template
 				$match->time = $val->validated('time');
 				$match->score = $val->validated('score');
 				$match->owner = $val->validated('owner');
+				$match->name = $val->validated('name');
+				$match->description = $val->validated('description');
 
 				Session::set_flash('error', $val->error());
 			}

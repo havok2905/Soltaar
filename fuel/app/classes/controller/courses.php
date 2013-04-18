@@ -1,7 +1,9 @@
 <?php
+
 class Controller_Courses extends Controller_Template 
 {
-
+	public $template = 'protected';
+	
 	public function action_index()
 	{
 		$data['courses'] = Model_Course::find('all');

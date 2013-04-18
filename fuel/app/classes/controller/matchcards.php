@@ -1,7 +1,9 @@
 <?php
+
 class Controller_Matchcards extends Controller_Template 
 {
-
+	public $template = 'protected';
+	
 	public function action_index()
 	{
 		$data['matchcards'] = Model_Matchcard::find('all');

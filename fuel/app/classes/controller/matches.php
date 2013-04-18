@@ -2,6 +2,8 @@
 class Controller_Matches extends Controller_Template 
 {
 
+	public $template = 'protected';
+
 	public function action_index()
 	{
 		$data['matches'] = Model_Match::find('all');

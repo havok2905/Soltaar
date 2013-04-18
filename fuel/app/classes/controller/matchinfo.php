@@ -2,7 +2,8 @@
 
 class Controller_Matchinfo extends Controller_Rest
 {
-
+	public $template = 'protected';
+	
     public function get_match()
     {
     	is_null(Input::get('id')) and Response::redirect('Matches');

@@ -21,7 +21,8 @@
  */
 class Controller_Welcome extends Controller
 {
-
+	public $template = 'protected';
+	
 	/**
 	 * The basic welcome message
 	 *

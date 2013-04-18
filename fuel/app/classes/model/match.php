@@ -8,6 +8,8 @@ class Model_Match extends Model
 		'time',
 		'score',
 		'owner',
+		'name',
+		'description',
 		'created_at',
 		'updated_at',
 	);
@@ -29,7 +31,8 @@ class Model_Match extends Model
 		$val->add_field('time', 'Time', 'required|valid_string[numeric]');
 		$val->add_field('score', 'Score', 'required|valid_string[numeric]');
 		$val->add_field('owner', 'Owner', 'required|valid_string[numeric]');
-
+		$val->add_field('name', 'Name', 'required|valid_string');
+		$val->add_field('description', 'Description', '');
 		return $val;
 	}
 

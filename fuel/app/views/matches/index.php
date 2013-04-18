@@ -7,6 +7,8 @@
 			<th>Time</th>
 			<th>Score</th>
 			<th>Owner</th>
+			<th>Name</th>
+			<th>Description</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -16,6 +18,8 @@
 			<td><?php echo $match->time; ?></td>
 			<td><?php echo $match->score; ?></td>
 			<td><?php echo $match->owner; ?></td>
+			<td><?php echo $match->name; ?></td>
+			<td><?php echo $match->description; ?></td>
 			<td>
 				<?php echo Html::anchor('matches/view/'.$match->id, 'View'); ?> |
 				<?php echo Html::anchor('matches/edit/'.$match->id, 'Edit'); ?> |

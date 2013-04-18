@@ -9,6 +9,12 @@
 <p>
 	<strong>Owner:</strong>
 	<?php echo $match->owner; ?></p>
+<p>
+	<strong>Name:</strong>
+	<?php echo $match->name; ?></p>
+<p>
+	<strong>Description:</strong>
+	<?php echo $match->description; ?></p>
 
 <?php echo Html::anchor('matches/edit/'.$match->id, 'Edit'); ?> |
 <?php echo Html::anchor('matches', 'Back'); ?>

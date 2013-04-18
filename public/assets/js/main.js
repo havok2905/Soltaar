@@ -4,16 +4,31 @@
 */
 
 // Construct a new shuffled deck of cards
-var cardsArray = new Array();
-	cardsArray[0] = new Card("bear", "a card with a red circle on it");
-	cardsArray[1] = new Card("pig", "a card with a red circle on it");
-	cardsArray[2] = new Card("cat", "a card with a yellow triangle on it");
-	cardsArray[3] = new Card("ladybug", "a card with a yellow triangle on it");
-	cardsArray[4] = new Card("fox", "a card with a green diamond on it");
-	cardsArray[5] = new Card("lion", "a card with a green diamond on it");
-	cardsArray[6] = new Card("rat", "a card with a purple box on it");
-	cardsArray[7] = new Card("bear", "a card with a purple box on it");
-var deck = new Deck(cardsArray);
+var card_array = new Array();
+
+//ajax it up yo
+$.getJSON("http://localhost/soltaar/public/matchinfo/match.json?id=1", function(data) {
+	$.each(data, function(index, value) {
+		card_array[index] = new Card(value["name"], value["description"]);
+		//todo: append cards properly
+		var id = data.match[0].id;
+		$("#" + id).append("<li class='card' data-role=" + x + "></li>");
+		$("#" + id + " > li").html("<figure class='front'><embed src='../img/front.svg' type='image/svg+xml' /></figure><figure class='back'><embed src='"+name+".svg' type='image/svg+xml' /></figure>");
+	});
+});
+// var cardsArray = new Array();
+// 	cardsArray[0] = new Card("bear", "a card with a red circle on it");
+// 	cardsArray[1] = new Card("pig", "a card with a red circle on it");
+// 	cardsArray[2] = new Card("cat", "a card with a yellow triangle on it");
+// 	cardsArray[3] = new Card("ladybug", "a card with a yellow triangle on it");
+// 	cardsArray[4] = new Card("fox", "a card with a green diamond on it");
+// 	cardsArray[5] = new Card("lion", "a card with a green diamond on it");
+// 	cardsArray[6] = new Card("rat", "a card with a purple box on it");
+// 	cardsArray[7] = new Card("bear", "a card with a purple box on it");
+
+
+// var deck = new Deck(cardsArray);
+var deck = new Deck(card_array);
 var shuffledDeck = deck.shuffleCards();
 
 // Start a new game

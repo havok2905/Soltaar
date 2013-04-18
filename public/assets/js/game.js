@@ -34,7 +34,7 @@ Game.prototype.dealCards = function(deck)
 			idnum++;
 		}
 		$("#" + id).append("<li class='card' data-role=" + x + "></li>");
-		$("#" + id + " > li").html("<figure class='front'><embed src='front.svg' type='image/svg+xml' /></figure><figure class='back'><embed src='"+name+".svg' type='image/svg+xml' /></figure>");
+		$("#" + id + " > li").html("<figure class='front'><embed src='../img/front.svg' type='image/svg+xml' /></figure><figure class='back'><embed src='"+name+".svg' type='image/svg+xml' /></figure>");
 	}
 }
 

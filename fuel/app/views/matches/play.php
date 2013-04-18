@@ -1,7 +1,6 @@
 <h2>Listing Match</h2>
 
 <div id="solTaar">
-	<!-- <h1>Sol Taar</h1> -->
 </div>
 <div id="main">
 
@@ -30,6 +29,6 @@
 
 
 <?php var_dump($match); //Array of match information?>
-<br/><br/><br/>
+<br /><br /><br />
 <?php var_dump($user); //Array of match owner information?>
 

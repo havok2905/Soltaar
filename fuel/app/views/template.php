@@ -3,7 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
+	<?php echo Asset::css('reset.css'); ?>
 	<?php echo Asset::css('bootstrap.css'); ?>
+	
+	<?php echo Asset::css('main.css'); ?>
+	<?php echo Asset::js('jquery.js'); ?>
+	<?php echo Asset::js('jquery.hotkeys.js'); ?>
+	<?php echo Asset::js('card.js'); ?>
+	<?php echo Asset::js('deck.js'); ?>
+	<?php echo Asset::js('game.js'); ?>
+	<?php echo Asset::js('main.js'); ?>
 	<style>
 		body { margin: 40px; }
 	</style>

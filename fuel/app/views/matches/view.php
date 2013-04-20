@@ -16,5 +16,11 @@
 	<strong>Description:</strong>
 	<?php echo $match->description; ?></p>
 
+<ul>
+<?php foreach ($cards as $card => $value) { 
+	echo "<li>".Html::anchor('cards/view/'.$value["id"], $value["name"])."</li>";
+} ?>
+</ul>
+
 <?php echo Html::anchor('matches/edit/'.$match->id, 'Edit'); ?> |
 <?php echo Html::anchor('matches', 'Back'); ?>

@@ -41,9 +41,20 @@
 
 			</div>
 		</div>
+
+		<?php foreach ($cards as $card => $value) { ?>
+			
+			<div class="clearfix">
+				<?php echo Form::label($value -> name, 'cards'); ?>
+				<div class="input">
+					<?php echo Form::checkbox('cards', $value -> name); ?>
+				</div>
+			</div>
+
+		<?php } ?>
+
 		<div class="actions">
 			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>
-
 		</div>
 	</fieldset>
 <?php echo Form::close(); ?>

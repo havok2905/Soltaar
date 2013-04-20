@@ -21,6 +21,9 @@ class Controller_Matches extends Controller_Template
 			Response::redirect('Matches');
 		}
 
+		$cards = DB::query("SELECT * FROM matchcards INNER JOIN cards ON matchcards.cardid = cards.id WHERE matchcards.matchid = $id")->execute()->as_array();
+		$data["cards"] = $cards;
+
 		$this->template->title = "Match";
 		$this->template->content = View::forge('matches/view', $data);
 
@@ -29,10 +32,8 @@ class Controller_Matches extends Controller_Template
 	public function action_create()
 	{
 		if (Input::method() == 'POST')
-		{
-			$val = Model_Match::validate('create');
-			
-			if ($val->run())
+		{	
+			if (Input::post('score'))
 			{
 				$match = Model_Match::forge(array(
 					'time' => Input::post('time'),
@@ -44,8 +45,17 @@ class Controller_Matches extends Controller_Template
 
 				if ($match and $match->save())
 				{
-					Session::set_flash('success', 'Added match #'.$match->id.'.');
+					foreach (Input::post('cards') as $card => $value) 
+					{
+						$matchcard = Model_Matchcard::forge(array(
+							'cardid' => $value,
+							'matchid' => $match->id
+						));	
 
+						$matchcard -> save();
+					}
+
+					Session::set_flash('success', 'Added match #'.$match->id.'.');
 					Response::redirect('matches');
 				}
 
@@ -56,12 +66,13 @@ class Controller_Matches extends Controller_Template
 			}
 			else
 			{
-				Session::set_flash('error', $val->error());
+				Session::set_flash('error', "error");
 			}
 		}
 
+		$data["cards"] = Model_Card::find('all');
 		$this->template->title = "Matches";
-		$this->template->content = View::forge('matches/create');
+		$this->template->content = View::forge('matches/create', $data);
 
 	}
 
@@ -75,10 +86,33 @@ class Controller_Matches extends Controller_Template
 			Response::redirect('Matches');
 		}
 
-		$val = Model_Match::validate('edit');
-
-		if ($val->run())
+		if (Input::post('score'))
 		{
+			$cards = DB::query("SELECT cardid FROM matchcards INNER JOIN cards ON matchcards.cardid = cards.id WHERE matchcards.matchid = $id")->execute()->as_array();
+			$newcards = Input::post('cards'); 
+
+			if($newcards != null)
+			{
+				foreach ($cards as $card => $value) 
+				{
+					$value = $value["cardid"];
+					$delete = DB::query("DELETE FROM matchcards WHERE cardid=$value AND matchid=$id")->execute();
+				}
+
+				foreach ($newcards as $newcard => $value) 
+				{
+					$matchcard = Model_Matchcard::forge(array(
+						'cardid' => $value,
+						'matchid' => $id
+					));	
+
+					$matchcard -> save();
+				}
+			}
+			
+
+			
+
 			$match->time = Input::post('time');
 			$match->score = Input::post('score');
 			$match->owner = Input::post('owner');
@@ -88,7 +122,6 @@ class Controller_Matches extends Controller_Template
 			if ($match->save())
 			{
 				Session::set_flash('success', 'Updated match #' . $id);
-
 				Response::redirect('matches');
 			}
 
@@ -108,14 +141,16 @@ class Controller_Matches extends Controller_Template
 				$match->name = $val->validated('name');
 				$match->description = $val->validated('description');
 
-				Session::set_flash('error', $val->error());
+				Session::set_flash('error', "error");
 			}
 
 			$this->template->set_global('match', $match, false);
 		}
 
+		$data["cards"] = Model_Card::find('all');
+
 		$this->template->title = "Matches";
-		$this->template->content = View::forge('matches/edit');
+		$this->template->content = View::forge('matches/edit', $data);
 
 	}
 

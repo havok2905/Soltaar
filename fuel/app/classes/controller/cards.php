@@ -3,10 +3,11 @@
 class Controller_Cards extends Controller_Template 
 {
 	public $template = 'protected';
-	
+
 	public function action_index()
 	{
 		$data['cards'] = Model_Card::find('all');
+
 		$this->template->title = "Cards";
 		$this->template->content = View::forge('cards/index', $data);
 

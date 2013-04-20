@@ -3,14 +3,14 @@ for SVGs, scalability is difficult
 use background-size and its webkit prefixes
 */
 
-body {
+/*body {
  background-color: #5b737f;
  color: #2A2A2A;
    font-family: 'verdana', sans-serif;
 
 }
-
-#main { 
+*/
+/*#main { 
  width: 80%;
  height: 80%;
  position: relative;
@@ -104,7 +104,7 @@ form {
  border: 0 none;
  text-align:  center;
  outline: none;
-}
+}*/
 
 /* Cards */
 

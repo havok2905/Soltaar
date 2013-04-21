@@ -6,10 +6,11 @@
 *   @param carddesc
 */
 
-function Card(cardname, carddesc)
+function Card(cardname, carddesc, cardimage)
 {
 	this.cardname = cardname; 
 	this.carddesc = carddesc;
+	this.cardimage = cardimage;
 }
 
 
@@ -24,6 +25,18 @@ Card.prototype.getCardName = function()
 Card.prototype.setCardname = function(cardname)
 {
 	this.cardname = cardname;
+}
+
+// Returns the card name a s a string
+Card.prototype.getCardImage = function()
+{
+	return this.cardimage;
+}
+
+// Sets the card name as a string 
+Card.prototype.setCardImage = function(cardname)
+{
+	this.cardname = cardimage;
 }
 
 

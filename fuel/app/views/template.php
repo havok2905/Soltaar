@@ -18,6 +18,15 @@
 	</style>
 </head>
 <body>
+	<div class="navbar navbar-fixed-top">  
+	  <div class="navbar-inner">  
+	    <div class="container">  
+	    	<ul class="nav">
+	    		<li><a href="">Home</a></li>
+	    	</ul> 
+	    </div>  
+	  </div>  
+	</div>   
 	<div class="container">
 		<div class="row">
 			<div class="span16">

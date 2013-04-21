@@ -10,6 +10,16 @@
 </head>
 <body>
 	<div class="container">
+		<div class="navbar navbar-fixed-top">  
+		  <div class="navbar-inner">  
+		    <div class="container">  
+		    	<a href="#" class="brand">Soltaar</a>
+		    	<ul class="nav">
+		    		<li><a href="">Home</a></li>
+		    	</ul> 
+		    </div>  
+		  </div>  
+		</div> 
 		<div class="row">
 			<div class="span16">
 				<h1><?php echo $title; ?></h1>

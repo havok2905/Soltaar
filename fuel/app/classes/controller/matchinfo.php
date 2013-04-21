@@ -2,7 +2,7 @@
 
 class Controller_Matchinfo extends Controller_Rest
 {
-	public $template = 'protected';
+	public $template = 'superprotected';
 	
     public function get_match()
     {

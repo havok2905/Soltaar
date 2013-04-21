@@ -19,7 +19,7 @@
  * @package  app
  * @extends  Controller
  */
-class Controller_Welcome extends Controller
+class Controller_Welcome extends Controller_Template
 {
 	public $template = 'protected';
 	
@@ -31,7 +31,31 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_index()
 	{
-		return Response::forge(View::forge('welcome/index'));
+		$role = Auth::instance()->get_groups();
+		$role = $role[0][1];
+
+		$id = Auth::instance()->get_user_id();
+		$id = $id[1];
+
+		$courses = DB::query("SELECT * FROM courseusers INNER JOIN courses on courseusers.courseid = courses.id WHERE courseusers.userid=$id")->execute()->as_array();
+
+		$matches = array();
+
+		foreach ($courses as $course => $value) 
+		{
+			$id = $value["id"];
+			$matchquery = DB::query("SELECT * FROM matches WHERE course = $id")->execute()->as_array();
+			array_push($matches, array(
+				"id" => $id,
+				"matches" => $matchquery
+			));
+		}
+		
+		$data["matches"] = $matches;
+		$data["role"] = $role;
+		
+		$this->template->title = "Welcome";
+		$this->template->content = View::forge('welcome/index', $data);
 	}
 
 	/**

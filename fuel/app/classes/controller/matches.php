@@ -2,11 +2,12 @@
 class Controller_Matches extends Controller_Template 
 {
 
-	public $template = 'protected';
+	public $template = 'superprotected';
 
 	public function action_index()
 	{
 		$data['matches'] = Model_Match::find('all');
+
 		$this->template->title = "Matches";
 		$this->template->content = View::forge('matches/index', $data);
 	}
@@ -41,6 +42,7 @@ class Controller_Matches extends Controller_Template
 					'owner' => Input::post('owner'),
 					'name' => Input::post('name'),
 					'description' => Input::post('description'),
+					'course' => Input::post('course')
 				));
 
 				if ($match and $match->save())
@@ -71,6 +73,7 @@ class Controller_Matches extends Controller_Template
 		}
 
 		$data["cards"] = Model_Card::find('all');
+
 		$this->template->title = "Matches";
 		$this->template->content = View::forge('matches/create', $data);
 
@@ -115,6 +118,7 @@ class Controller_Matches extends Controller_Template
 			$match->owner = Input::post('owner');
 			$match->name = Input::post('name');
 			$match->description = Input::post('description');
+			$match->course = Input::post('course');
 
 			if ($match->save())
 			{
@@ -164,20 +168,5 @@ class Controller_Matches extends Controller_Template
 
 		Response::redirect('matches');
 
-	}
-
-	// OUR CONTROLLER FOR BRINGING UP A MATCH
-	public function action_play($id = null)
-	{
-		is_null($id) and Response::redirect('Matches');
-
-		$match = DB::select()->from('matches')->where('id', $id)->execute();
-		$user = DB::select('username')->from('users')->where('id', $match[0]['owner']);
-
-		$data['user'] = $user;
-		$data['match'] = $match;
-
-		$this->template->title = "Match";
-		$this->template->content = View::forge('matches/play', $data);
 	}
 }

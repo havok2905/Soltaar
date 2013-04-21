@@ -44,7 +44,15 @@
 
 			</div>
 		</div>
+		<div class="clearfix">
+			<?php echo Form::label('Course', 'course'); ?>
 
+			<div class="input">
+				<?php echo Form::input('course', Input::post('course', isset($match) ? $match->course : ''), array('class' => 'span4')); ?>
+
+			</div>
+		</div>
+		
 		<?php foreach ($cards as $card => $value) { ?>
 			
 			<div class="clearfix">

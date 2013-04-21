@@ -21,8 +21,23 @@
 	<div class="navbar navbar-fixed-top">  
 	  <div class="navbar-inner">  
 	    <div class="container">  
+	    	<?php echo Html::anchor("welcome", "Soltaar", array("class"=>"brand"));?>
 	    	<ul class="nav">
-	    		<li><a href="">Home</a></li>
+	    		<li><?php echo Html::anchor("welcome", "Home");?></li>
+
+	    		<?php
+	    			$role = Auth::instance()->get_groups();
+	    			$role = $role[0][1];
+
+	    			if($role >= 50)
+	    			{
+	    				echo "<li>".Html::anchor("cards", "Cards")."</li>";
+	    				echo "<li>".Html::anchor("courses", "Courses")."</li>";
+	    				echo "<li>".Html::anchor("matches", "Matches")."</li>";
+	    				echo "<li>".Html::anchor("users", "Users")."</li>";
+	    			}
+	    		?>
+
 	    	</ul> 
 	    </div>  
 	  </div>  
@@ -35,11 +50,11 @@
 				<?php
                     if(Auth::instance()->check())
 					{
-					    $link = array("Logged in as: ".Auth::instance()->get_screen_name(), Html::anchor('users/logout', 'Logout'));
+					    $link = array("Logged in as: ".Auth::instance()->get_screen_name(), Html::anchor('login/logout', 'Logout'));
 					}
 					else
 					{
-					    $link = array(Html::anchor('users/login', 'Login'), Html::anchor('users/register', 'Register'));
+					    $link = array(Html::anchor('login/login', 'Login'), Html::anchor('login/register', 'Register'));
 					}
 					echo Html::ul($link);
                 ?>

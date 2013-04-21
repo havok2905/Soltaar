@@ -2,7 +2,7 @@
 
 class Controller_Matchcards extends Controller_Template 
 {
-	public $template = 'protected';
+	public $template = 'superprotected';
 	
 	public function action_index()
 	{

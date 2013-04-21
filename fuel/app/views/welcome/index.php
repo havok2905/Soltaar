@@ -1,63 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Filler</title>
-	<?php echo Asset::css('reset.css'); ?>
-	<?php echo Asset::css('main.css'); ?>
-	<?php echo Asset::js('jquery.js'); ?>
-	<?php echo Asset::js('jquery.hotkeys.js'); ?>
-	<?php echo Asset::js('card.js'); ?>
-	<?php echo Asset::js('deck.js'); ?>
-	<?php echo Asset::js('game.js'); ?>
-	<?php echo Asset::js('main.js'); ?>
-</head>
+<h2>My Matches</h2>
 
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="span16">
-				<h1><?php echo $title; ?></h1>
-				<hr>
-				<?php
-                    if(Auth::instance()->check())
-					{
-					    $link = array("Logged in as: ".Auth::instance()->get_screen_name(), Html::anchor('users/logout', 'Logout'));
-					}
-					else
-					{
-					    $link = array(Html::anchor('users/login', 'Login'), Html::anchor('users/register', 'Register'));
-					}
-					echo Html::ul($link);
-                ?>
-<?php if (Session::get_flash('success')): ?>
-				<div class="alert-message success">
-					<p>
-					<?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
-					</p>
-				</div>
-<?php endif; ?>
-<?php if (Session::get_flash('error')): ?>
-				<div class="alert-message error">
-					<p>
-					<?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
-					</p>
-				</div>
-<?php endif; ?>
-			</div>
-			<div class="span16">
-<?php echo $content; ?>
-			</div>
-		</div>
-		<footer>
-			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
-			<p>
-				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
-				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
-			</p>
-		</footer>
-	</div>
-</body>
+<?php
+	foreach ($matches as $match => $value) 
+	{
+		echo "<h3>" . $value["id"] . "</h3>";
+		echo "<table class='table table-striped'>";
+		echo "<thead>";
+		echo "<tr>";
+		echo "<th>Match Name</th>";
+		echo "<th>Match Description</th>";
+		echo "<th></th>";
+		echo "</tr>";
+		echo "</thead>";
 
+		foreach ($value["matches"] as $match => $result) 
+		{
+			echo "<tr>";
+			echo "<td>" . $result["name"] . "</td>";
+			echo "<td>" . $result["description"] . "</td>";
+			echo "<td>";
+			
+			echo Html::anchor('play/play/'.$result["id"], 'Play'); 
 
-</html>
+			if($role > 1)
+			{
+				echo Html::anchor('match/view/'.$result["id"], ' View'); 
+				echo Html::anchor('match/edit/'.$result["id"], ' Edit');  
+				echo Html::anchor('match/delete/'.$result["id"], ' Delete', array('onclick' => "return confirm('Are you sure?')"));	
+			}
+			
+			
+			echo "</td>";
+			echo "</tr>";
+		}
+		
+		echo "</table>";
+	}
+?>

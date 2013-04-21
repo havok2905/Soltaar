@@ -15,6 +15,9 @@
 <p>
 	<strong>Description:</strong>
 	<?php echo $match->description; ?></p>
+<p>
+	<strong>Course:</strong>
+	<?php echo $match->course; ?></p>
 
 <ul>
 <?php foreach ($cards as $card => $value) { 

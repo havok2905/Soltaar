@@ -22,7 +22,7 @@
 		<div class="navbar navbar-fixed-top">  
 		  <div class="navbar-inner">  
 		    <div class="container">  
-		    	<a href="welcome" class="brand">Soltaar</a>
+		    	<?php echo Html::anchor("welcome", "Soltaar", array("class"=>"brand"));?>
 		    	<ul class="nav">
 		    		<li><?php echo Html::anchor("welcome", "Home");?></li>
 
@@ -38,7 +38,7 @@
 		    				echo "<li>".Html::anchor("users", "Users")."</li>";
 		    			}
 		    		?>
-		    	
+
 		    	</ul> 
 		    </div>  
 		  </div>  
@@ -48,7 +48,9 @@
 				<h1><?php echo $title; ?></h1>
 				<hr>
 				<?php
-                    if(Auth::instance()->check())
+					$roles = Auth::instance()->get_groups();
+
+                    if($roles[0][1] == 50)
 					{
 					    $link = array("Logged in as: ".Auth::instance()->get_screen_name(), Html::anchor('login/logout', 'Logout'));
 						echo Html::ul($link);

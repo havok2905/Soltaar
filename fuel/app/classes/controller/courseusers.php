@@ -1,7 +1,8 @@
 <?php
 class Controller_Courseusers extends Controller_Template 
 {
-
+	public $template = 'superprotected';
+	
 	public function action_index()
 	{
 		$data['courseusers'] = Model_Courseuser::find('all');

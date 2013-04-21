@@ -75,7 +75,7 @@
 			</div>
 		</div>
 		<footer>
-			<p class="pagination-centered">Created by Chris McClean, Bryce Ruppel, Sherry B., and Elizabeth Williams</p>
+			<p class="pagination-centered">Created by Chris McLean, Bryce Ruppel, Sherry B., and Elizabeth Williams</p>
 		</footer>
 	</div>
 </body>

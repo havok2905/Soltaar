@@ -12,6 +12,7 @@ return array(
 				3 => '004_create_matches',
 				4 => '005_create_users',
 				5 => '006_create_matchcards',
+				6 => '007_create_courseusers',
 			),
 		),
 		'module' => 

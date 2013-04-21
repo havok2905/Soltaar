@@ -10,5 +10,11 @@
 	<strong>Owner:</strong>
 	<?php echo $course->owner; ?></p>
 
+<ul>
+<?php foreach ($users as $user => $value) { 
+	echo "<li>".$value["username"]."</li>";
+} ?>
+</ul>
+
 <?php echo Html::anchor('courses/edit/'.$course->id, 'Edit'); ?> |
 <?php echo Html::anchor('courses', 'Back'); ?>

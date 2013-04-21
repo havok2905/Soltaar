@@ -109,9 +109,6 @@ class Controller_Matches extends Controller_Template
 					$matchcard -> save();
 				}
 			}
-			
-
-			
 
 			$match->time = Input::post('time');
 			$match->score = Input::post('score');
@@ -135,12 +132,6 @@ class Controller_Matches extends Controller_Template
 		{
 			if (Input::method() == 'POST')
 			{
-				$match->time = $val->validated('time');
-				$match->score = $val->validated('score');
-				$match->owner = $val->validated('owner');
-				$match->name = $val->validated('name');
-				$match->description = $val->validated('description');
-
 				Session::set_flash('error', "error");
 			}
 
@@ -161,6 +152,7 @@ class Controller_Matches extends Controller_Template
 		if ($match = Model_Match::find($id))
 		{
 			$match->delete();
+			$deleteusers = $delete = DB::query("DELETE FROM matchcards WHERE matchid=$id")->execute();
 
 			Session::set_flash('success', 'Deleted match #'.$id);
 		}

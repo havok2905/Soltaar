@@ -21,6 +21,9 @@ class Controller_Courses extends Controller_Template
 			Response::redirect('Courses');
 		}
 
+		$users = DB::query("SELECT * FROM courseusers INNER JOIN users ON courseusers.userid = users.id WHERE courseusers.courseid = $id")->execute()->as_array();
+		$data["users"] = $users;
+
 		$this->template->title = "Course";
 		$this->template->content = View::forge('courses/view', $data);
 
@@ -32,7 +35,7 @@ class Controller_Courses extends Controller_Template
 		{
 			$val = Model_Course::validate('create');
 			
-			if ($val->run())
+			if (Input::post("description"))
 			{
 				$course = Model_Course::forge(array(
 					'name' => Input::post('name'),
@@ -42,6 +45,16 @@ class Controller_Courses extends Controller_Template
 
 				if ($course and $course->save())
 				{
+					foreach (Input::post('users') as $user => $value) 
+					{
+						$matchcard = Model_Courseuser::forge(array(
+							'userid' => $value,
+							'courseid' => $course->id
+						));	
+
+						$matchcard -> save();
+					}
+
 					Session::set_flash('success', 'Added course #'.$course->id.'.');
 
 					Response::redirect('courses');
@@ -58,8 +71,10 @@ class Controller_Courses extends Controller_Template
 			}
 		}
 
+		$data["users"] = Model_User::find('all');
+
 		$this->template->title = "Courses";
-		$this->template->content = View::forge('courses/create');
+		$this->template->content = View::forge('courses/create', $data);
 
 	}
 
@@ -73,10 +88,30 @@ class Controller_Courses extends Controller_Template
 			Response::redirect('Courses');
 		}
 
-		$val = Model_Course::validate('edit');
-
-		if ($val->run())
+		if (Input::post('description'))
 		{
+			$users = DB::query("SELECT userid FROM courseusers INNER JOIN users ON courseusers.userid = users.id WHERE courseusers.courseid = $id")->execute()->as_array();
+			$newusers = Input::post('users'); 
+
+			if($newusers != null)
+			{
+				foreach ($users as $user => $value) 
+				{
+					$value = $value["userid"];
+					$delete = DB::query("DELETE FROM courseusers WHERE userid=$value AND courseid=$id")->execute();
+				}
+
+				foreach ($newusers as $newuser => $value) 
+				{
+					$courseuser = Model_Courseuser::forge(array(
+						'userid' => $value,
+						'courseid' => $id
+					));	
+
+					$courseuser -> save();
+				}
+			}
+
 			$course->name = Input::post('name');
 			$course->description = Input::post('description');
 			$course->owner = Input::post('owner');
@@ -98,18 +133,16 @@ class Controller_Courses extends Controller_Template
 		{
 			if (Input::method() == 'POST')
 			{
-				$course->name = $val->validated('name');
-				$course->description = $val->validated('description');
-				$course->owner = $val->validated('owner');
-
-				Session::set_flash('error', $val->error());
+				Session::set_flash('error', "error");
 			}
 
 			$this->template->set_global('course', $course, false);
 		}
 
+		$data["users"] = Model_User::find('all');
+
 		$this->template->title = "Courses";
-		$this->template->content = View::forge('courses/edit');
+		$this->template->content = View::forge('courses/edit', $data);
 
 	}
 
@@ -120,6 +153,8 @@ class Controller_Courses extends Controller_Template
 		if ($course = Model_Course::find($id))
 		{
 			$course->delete();
+
+			$deleteusers = $delete = DB::query("DELETE FROM courseusers WHERE courseid=$id")->execute();
 
 			Session::set_flash('success', 'Deleted course #'.$id);
 		}

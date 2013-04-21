@@ -13,9 +13,6 @@
 	<?php echo Asset::js('deck.js'); ?>
 	<?php echo Asset::js('game.js'); ?>
 	<?php echo Asset::js('main.js'); ?>
-	<style>
-		body { margin: 40px; }
-	</style>
 </head>
 <body>
 	<div class="container">
@@ -30,14 +27,14 @@
 		  </div>  
 		</div> 
 		<div class="row">
-			<div class="span16">
+			<div class="span16" id="loggedIn">
 				<h1><?php echo $title; ?></h1>
-				<hr>
+				<hr class="dashes">
 				<?php
                     if(Auth::instance()->check())
 					{
 					    $link = array("Logged in as: ".Auth::instance()->get_screen_name(), Html::anchor('users/logout', 'Logout'));
-						echo Html::ul($link);
+						echo Html::ul($link, array('class' => 'loginList'));
 					}	
 					else
 					{
@@ -59,16 +56,12 @@
 				</div>
 <?php endif; ?>
 			</div>
-			<div class="span16">
+			<div class="span16" id="loggedInContent">
 <?php echo $content; ?>
 			</div>
 		</div>
 		<footer>
-			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
-			<p>
-				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
-				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
-			</p>
+			<p class="pagination-centered">Created by Chris McClean, Bryce Ruppel, Sherry B., and Elizabeth Williams</p>
 		</footer>
 	</div>
 </body>

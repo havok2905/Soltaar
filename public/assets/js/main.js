@@ -60,16 +60,12 @@ function addEvents()
 		e.preventDefault();
 
 		var data = $("#skip").val();
-		console.log(data);
-
+		
 		if (data < cardarray.length)	
 		{
 			handleFlip($('*[data-role='+data+']'));
-			$('*[data-role='+data+']').focus();
 			$("#skip").val("");
 		}
-		
-		return false;
 	});
 }
 
@@ -83,6 +79,9 @@ function handleFlip(card)
 	if(game.selections[0] == 0 && game.selections[1] == 0) // First Selection
 	{
 		game.selections[0] = cardname;
+
+		$("#card-one").html("Card One: " + cardname)
+
 		$(card).unbind("click.handlecard");
 		$(card).addClass("flipped");
 	}
@@ -91,15 +90,18 @@ function handleFlip(card)
 		$(card).addClass("flipped");
 
 		game.selections[1] = cardname;
+
+		$("#card-two").html("Card Two: " + cardname)
 		
 		// If a match is found, push to the match array which also increments score
 		if(game.isMatch())
 		{
 			game.incrementMatches({"name":cardname});
+			$("#last-match").html("Last Match: " + cardname);
 		}
 		else
 		{
-			console.log("nope");
+			$("#last-match").html("Last Match: None");
 		}
 
 		// Reset selection and events after one second of delay
@@ -112,6 +114,8 @@ function handleFlip(card)
 			
 			$(".flipped").removeClass("flipped");
 			game.setSelections(0, 0);
+			$("#card-one").html("Card One: ");
+			$("#card-two").html("Card Two: ");
 		},1000);
 		
 		removeEvents();
@@ -128,6 +132,10 @@ function handleFlip(card)
 		$(".match").removeClass("match");
 		$(".flipped").removeClass("flipped");
 		game.resetGame();
+
+		$("#card-one").html("Card One: ");
+		$("#card-two").html("Card Two: ");
+		$("#last-match").html("Last Match: ");
 	}
 }
 

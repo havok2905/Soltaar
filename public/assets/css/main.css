@@ -6,6 +6,10 @@ use background-size and its webkit prefixes
 
 /* General Styles */
 
+ol{
+    list-style: none;
+}
+
 div.row {
     margin-top: 100px;
 }
@@ -132,10 +136,6 @@ h2 {
  -webkit-backface-visibility: hidden;
 }
 
-.card .front {
- background-color: #6D5B7F;
-}
-
 .card .back {
  -webkit-transform: rotateY( 180deg );
  -o-transition: all .4s ease-in-out;
@@ -152,7 +152,6 @@ h2 {
  -moz-transition: all .4s ease-in-out;
  -webkit-transition: all .4s ease-in-out;
  transition: all .4s ease-in-out;
- background-color: #2A2A2A;
 }
 
 .card.match {

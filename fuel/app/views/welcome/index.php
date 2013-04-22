@@ -24,9 +24,9 @@
 
 			if($role > 1)
 			{
-				echo Html::anchor('match/view/'.$result["id"], ' View'); 
-				echo Html::anchor('match/edit/'.$result["id"], ' Edit');  
-				echo Html::anchor('match/delete/'.$result["id"], ' Delete', array('onclick' => "return confirm('Are you sure?')"));	
+				echo Html::anchor('matches/view/'.$result["id"], ' View'); 
+				echo Html::anchor('matches/edit/'.$result["id"], ' Edit');  
+				echo Html::anchor('matches/delete/'.$result["id"], ' Delete', array('onclick' => "return confirm('Are you sure?')"));	
 			}
 			
 			

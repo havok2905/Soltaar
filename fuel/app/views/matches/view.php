@@ -19,7 +19,7 @@
 	<strong>Course:</strong>
 	<?php echo $match->course; ?></p>
 
-<ul>
+<ul class="cardList">
 <?php foreach ($cards as $card => $value) { 
 	echo "<li>".Html::anchor('cards/view/'.$value["id"], $value["name"])."</li>";
 } ?>

@@ -55,7 +55,7 @@
 					echo Html::ul($link, array('class' => 'loginList'));
                 ?>
 <?php if (Session::get_flash('success')): ?>
-				<div class="alert-message success">
+				<div class="alert-message success pagination-centered">
 					<p>
 					<?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
 					</p>
@@ -72,6 +72,14 @@
 			<div class="span16" id="loginContent">
 <?php echo $content; ?>
 			</div>
+		</div>
+		<div class="span16">
+			<ul class="game">
+			<!-- use as base to get cards -->
+			<?php foreach ($cards as $card => $value) { 
+				echo "<li class='card'>".Html::anchor('cards/view/'.$value["id"], $value["name"])."</li>";
+			} ?>
+			</ul>
 		</div>
 		<footer>
 			<p class="pagination-centered">Created by Chris McLean, Bryce Ruppel, Sherry B., and Elizabeth Williams</p>

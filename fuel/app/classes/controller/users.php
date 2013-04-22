@@ -75,6 +75,25 @@ class Controller_Users extends Controller_Template
 		$this->template->content = View::forge('users/edit');
 
 	}
+
+	public function action_delete($id = null)
+	{
+		is_null($id) and Response::redirect('Users');
+
+		if ($user = Model_User::find($id))
+		{
+			$user->delete();
+			Session::set_flash('success', 'Deleted user #'.$id);
+		}
+
+		else
+		{
+			Session::set_flash('error', 'Could not delete user #'.$id);
+		}
+
+		Response::redirect('users');
+
+	}
 }
 
 

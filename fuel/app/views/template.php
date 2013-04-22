@@ -43,6 +43,7 @@
 		<div class="row">
 			<div class="span12" id="login">
 				<h1><?php echo $title; ?></h1>
+				<h2 id="special-htwo">YOU MUST USE CHROME FOR THIS APPLICATION</h2>
 				<?php
                     if(Auth::instance()->check())
 					{

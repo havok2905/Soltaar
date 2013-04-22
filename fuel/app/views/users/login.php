@@ -1,3 +1,4 @@
+
 <div class="form">
 	<p>Login</p>
 	<?php if (isset($errors)){echo $errors;}?>
@@ -7,25 +8,22 @@
 
 <div class="container">
 	<div id="menu">
-		<ul class="tempDashboard">
-			<li> 
-				<form>
-					Skip to: <input type="text" name="skip" id="skip" /><input type="submit" value="Go" id="submit" />
-				</form>
+		<h2>Login Information</h2>
+		<ul>
+			<li>
+				Admin
+				<ul>
+					<li>username: admin</li>
+					<li>password: admin</li>
+				</ul>
+			</li>
+			<li>
+				Guest
+				<ul>
+					<li>username: guest</li>
+					<li>password: guest</li>
+				</ul>
 			</li>
 		</ul>
-		<ul class="tempDashboard">
-			<li>Select Card</li>
-			<li>Spacebar</li>
-		</ul>
-		<ul class="tempDashboard">
-			<li>Select Cards</li>
-			<li>Arrow keys</li>
-		</ul>
-		<ul class="tempDashboard">
-			<li>Skip to Card Number</li>
-			<li>Ctrl</li>
-		</ul>
 	</div>
-
 </div>

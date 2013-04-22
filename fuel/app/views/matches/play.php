@@ -1,5 +1,7 @@
 <h2>Listing Match</h2>
 <div id="main">
+	<?php echo "<input type='hidden' id='id' data-role='".$match[0]["id"]."'/>"; ?>
+	
 	<div id="text">
 		<p>
 			Sol Tarr is a memory game where paired cards are shuffled together and the objective is to select them pair by pair.  When the game starts you will be alerted to the order of the cards.  Afterwards, the cards will flip over and it's your job to flip them back over by their matching pairs.  

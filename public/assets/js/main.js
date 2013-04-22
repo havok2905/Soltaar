@@ -49,9 +49,9 @@ $(document).ready(function()
 function addEvents()
 {
 	// Click event that handles all actions associated with selecting a card
-	$(".card").bind("click.handlecard", function()
-	{
-		handleFlip(this);
+	$(".card figure img").bind("click.handlecard", function()
+	{	//console.log($(this).parent().parent());
+		handleFlip($(this).parent().parent());
 	});
 
 	// Card selector input box controller
@@ -113,7 +113,9 @@ function handleFlip(card)
 			}
 			
 			$(".flipped").removeClass("flipped");
+			
 			game.setSelections(0, 0);
+			
 			$("#card-one").html("Card One: ");
 			$("#card-two").html("Card Two: ");
 		},1000);
@@ -141,7 +143,7 @@ function handleFlip(card)
 
 function removeEvents()
 {
-	$(".card").unbind("click.handlecard");
+	$(".card figure img").unbind("click.handlecard");
 }
 
 

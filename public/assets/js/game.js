@@ -33,7 +33,7 @@ Game.prototype.dealCards = function(deck)
 			$("#main").append("<ol class='cardRow' id='" + id + "'></ol>");
 			idnum++;
 		}
-		$("#" + id).append("<li class='card' data-role=" + x + "><figure class='front'><embed src='../../assets/img/front.svg' type='image/svg+xml' /></figure><figure class='back'><embed src='../../../public/assets/img/"+deck[x].cardimage+"' type='image/svg+xml' /></figure></li>");
+		$("#" + id).append("<li class='card' data-role=" + x + "><figure class='front'><img src='../../assets/img/front.svg'/></figure><figure class='back'><img src='../../../public/assets/img/"+deck[x].cardimage+"'/></figure></li>");
 	}
 }
 

@@ -154,7 +154,7 @@ input:-moz-placeholder, textarea:-moz-placeholder {
 }
 
 .card {
-display: inline-block;
+ display: inline-block;
  width: 150px;
  height: 225px;
  -webkit-transform-style: preserve-3d;

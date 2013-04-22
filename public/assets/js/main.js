@@ -22,8 +22,11 @@ $.ajax({
 
 		$.each(data.cards, function(index, value) 
 		{
-			var newcard = new Card(value.name, value.description, value.image);
-			tempcardsarray.push(newcard);
+			for(x=0; x<2; x++)
+			{
+				var newcard = new Card(value.name, value.description, value.image);
+				tempcardsarray.push(newcard);
+			}
 		});
 
 		setResults(tempcardsarray);

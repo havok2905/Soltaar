@@ -48,6 +48,8 @@ $(document).ready(function()
 
 function addEvents()
 {
+	var tempvalue;
+
 	// Click event that handles all actions associated with selecting a card
 	$(".card figure img").bind("click.handlecard", function()
 	{	//console.log($(this).parent().parent());
@@ -60,11 +62,12 @@ function addEvents()
 		e.preventDefault();
 
 		var data = $("#skip").val();
-		
-		if (data < cardarray.length)	
+
+		if (data < cardarray.length && tempvalue != data)	
 		{
 			handleFlip($('*[data-role='+data+']'));
 			$("#skip").val("");
+			tempvalue = data;
 		}
 	});
 }

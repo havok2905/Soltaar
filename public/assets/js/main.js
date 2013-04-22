@@ -4,14 +4,13 @@
 */
 
 // Construct a new shuffled deck of cards
-
 var cardarray = new Array();
-
 function setResults(results)
 {
 	cardarray = results;
 }
 
+// Request match information from the server
 $.ajax({
 	url: "http://localhost/soltaar/public/matchinfo/match.json?id=1", 
 	dataType: "json",
@@ -22,18 +21,18 @@ $.ajax({
 
 		$.each(data.cards, function(index, value) 
 		{
-			var newcard = new Card(value.name, value.description, value.image);
-			tempcardsarray.push(newcard);
+			for(x=0; x<2; x++)
+			{
+				var newcard = new Card(value.name, value.description, value.image);
+				tempcardsarray.push(newcard);
+			}
 		});
 
 		setResults(tempcardsarray);
 	}
 });
 
-console.log(cardarray);
-
-
-
+// Create a new deck object with the array of cards
 var deck = new Deck(cardarray);
 var shuffledDeck = deck.shuffleCards();
 
@@ -41,24 +40,6 @@ var shuffledDeck = deck.shuffleCards();
 var game = new Game(100, shuffledDeck.length/2, {"width":4, "height":2});
 
 // Set focus to a card with data-role value data
-function setFocus(data)	
-{
-	$('*[data-role='+data+']').focus();
-}
-
-// Card selector input box controller
-$("#submit").click(function()
-{
-	var data = $("#skip").val();
-	
-	if (data < cardsArray.length)	{
-		setFocus(data);
-		$("#skip").val("");
-	}
-	
-	return false;
-});
-
 $(document).ready(function()
 {
 	game.dealCards(shuffledDeck);
@@ -70,156 +51,97 @@ function addEvents()
 	// Click event that handles all actions associated with selecting a card
 	$(".card").bind("click.handlecard", function()
 	{
-		// initialize variables that contain the card's properties
-		var cardname = shuffledDeck[$(this).attr("data-role")].getCardName();
-		var carddesc = shuffledDeck[$(this).attr("data-role")].getCardDesc();
+		handleFlip(this);
+	});
 
-		// Check to see if it is the user's first or second selection and fill that slot with a card
-		if(game.selections[0] == 0 && game.selections[1] == 0) // First Selection
+	// Card selector input box controller
+	$("#submit").click(function(e)
+	{
+		e.preventDefault();
+
+		var data = $("#skip").val();
+		
+		if (data < cardarray.length)	
 		{
-			game.selections[0] = cardname;
-			$(this).unbind("click.handlecard");
-			$(this).addClass("flipped");
+			handleFlip($('*[data-role='+data+']'));
+			$("#skip").val("");
 		}
-		else if(game.selections[0] != 0 && game.selections[1] == 0) // Second Selections
+	});
+}
+
+function handleFlip(card)
+{
+	// initialize variables that contain the card's properties
+	var cardname = shuffledDeck[$(card).attr("data-role")].getCardName();
+	var carddesc = shuffledDeck[$(card).attr("data-role")].getCardDesc();
+
+	// Check to see if it is the user's first or second selection and fill that slot with a card
+	if(game.selections[0] == 0 && game.selections[1] == 0) // First Selection
+	{
+		game.selections[0] = cardname;
+
+		$("#card-one").html("Card One: " + cardname)
+
+		$(card).unbind("click.handlecard");
+		$(card).addClass("flipped");
+	}
+	else if(game.selections[0] != 0 && game.selections[1] == 0) // Second Selections
+	{
+		$(card).addClass("flipped");
+
+		game.selections[1] = cardname;
+
+		$("#card-two").html("Card Two: " + cardname)
+		
+		// If a match is found, push to the match array which also increments score
+		if(game.isMatch())
 		{
-			$(this).addClass("flipped");
-
-			game.selections[1] = cardname;
-			
-			// If a match is found, push to the match array which also increments score
-			if(game.isMatch())
-			{
-				game.incrementMatches({"name":cardname});
-			}
-			else
-			{
-				console.log("nope");
-			}
-
-			// Reset selection and events after one second of delay
-			setTimeout(function()
-			{
-				if(game.isMatch())
-				{
-					$(".flipped").addClass("match");
-				}
-				
-				$(".flipped").removeClass("flipped");
-				game.setSelections(0, 0);
-			},1000);
-			
-			removeEvents();
-			addEvents();
+			game.incrementMatches({"name":cardname});
+			$("#last-match").html("Last Match: " + cardname);
 		}
 		else
 		{
-			console.log("all selections filled");
+			$("#last-match").html("Last Match: None");
 		}
 
-		if(game.checkWin())
+		// Reset selection and events after one second of delay
+		setTimeout(function()
 		{
-			alert("you win");
-			$(".match").removeClass("match");
+			if(game.isMatch())
+			{
+				$(".flipped").addClass("match");
+			}
+			
 			$(".flipped").removeClass("flipped");
-			game.resetGame();
-		}
-
-	});
-	
-	// Spacebar, same as above click handler, Sherry is just being a lazy ass.  LAZY ASS: CLEAN THIS UP LATER, YOU FOOL.
-	$(".card").bind('keydown', 'space', function ()
+			game.setSelections(0, 0);
+			$("#card-one").html("Card One: ");
+			$("#card-two").html("Card Two: ");
+		},1000);
+		
+		removeEvents();
+		addEvents();
+	}
+	else
 	{
-		// initialize variables that contain the card's properties
-			var cardname = shuffledDeck[$(this).attr("data-role")].getCardName();
-			var carddesc = shuffledDeck[$(this).attr("data-role")].getCardDesc();
+		console.log("all selections filled");
+	}
 
-			// Check to see if it is the user's first or second selection and fill that slot with a card
-			if(game.selections[0] == 0 && game.selections[1] == 0) // First Selection
-			{
-				game.selections[0] = cardname;
-				$(this).unbind("click.handlecard");
-				$(this).addClass("flipped");
-			}
-			else if(game.selections[0] != 0 && game.selections[1] == 0) // Second Selections
-			{
-				$(this).addClass("flipped");
-
-				game.selections[1] = cardname;
-				
-				// If a match is found, push to the match array which also increments score
-				if(game.isMatch())
-				{
-					game.incrementMatches({"name":cardname});
-				}
-				else
-				{
-					console.log("nope");
-				}
-
-				// Reset selection and events after one second of delay
-				setTimeout(function()
-				{
-					if(game.isMatch())
-					{
-						$(".flipped").addClass("match");
-					}
-					
-					$(".flipped").removeClass("flipped");
-					game.setSelections(0, 0);
-				},1000);
-				
-				// FIX THIS TO WORK WITH INDIVIDUAL CARDS
-				removeEvents();
-				addEvents();
-			}
-			else
-			{
-				console.log("all selections filled");
-			}
-
-			if(game.checkWin())
-			{
-				alert("you win");
-				$(".match").removeClass("match");
-				$(".flipped").removeClass("flipped");
-				game.resetGame();
-			}
-	});
-	
-	// Set up key press events.~
-	$(document).keydown(function(event)
+	if(game.checkWin())
 	{
-		// Left and Right arrow keys:
+		alert("you win");
+		$(".match").removeClass("match");
+		$(".flipped").removeClass("flipped");
+		game.resetGame();
 
-		if(event.keyCode == 39) {
-			console.log("right");
-			var focused = $("*:focus").attr("data-role");
-			if (focused >= 0 || focused < cardsArray.length -1)	{
-				setFocus(focused + 1);
-			}
-			else	{
-				setFocus(0);
-			}
-			event.preventDefault();
-		}
-		if(event.keyCode == 37) {
-			console.log("left");
-			var focused = $("*:focus").attr("data-role");
-			if (focused > 0 || focused < cardsArray.length)	{
-				setFocus(focused -1);
-			}
-			else	{
-				setFocus(cardsArray.length - 1);
-			}
-			event.preventDefault();
-		}
-	});
+		$("#card-one").html("Card One: ");
+		$("#card-two").html("Card Two: ");
+		$("#last-match").html("Last Match: ");
+	}
 }
 
 function removeEvents()
 {
 	$(".card").unbind("click.handlecard");
-	$(".card").unbind('keydown', 'space');
 }
+
 

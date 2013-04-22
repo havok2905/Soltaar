@@ -34,11 +34,7 @@
 	</div>
 
 	<div class="span16">
-	<ul class="game">
-		<?php foreach ($cards as $card => $value) { 
-			echo "<li class='card'>".Html::anchor('cards/view/'.$value["id"], $value["name"])."</li>";
-		} ?>
-	</ul>
+	
 </div>
 
 </div>

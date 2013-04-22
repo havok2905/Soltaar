@@ -5,7 +5,6 @@
 	<title><?php echo $title; ?></title>
 	<?php echo Asset::css('reset.css'); ?>
 	<?php echo Asset::css('bootstrap.css'); ?>
-	
 	<?php echo Asset::css('main.css'); ?>
 	<?php echo Asset::js('jquery.js'); ?>
 	<?php echo Asset::js('jquery.hotkeys.js'); ?>
@@ -41,14 +40,14 @@
 		  </div>  
 		</div> 
 		<div class="row">
-			<div class="span16" id="loggedIn">
+			<div class="span12" id="loggedIn">
 				<h1><?php echo $title; ?></h1>
 				<hr class="dashes">
 				<?php
                     if(Auth::instance()->check())
 					{
 					    $link = array("Logged in as: ".Auth::instance()->get_screen_name(), Html::anchor('login/logout', 'Logout'));
-						echo Html::ul($link);
+						echo Html::ul($link, array('class' => 'loginList'));
 					}	
 					else
 					{
@@ -56,7 +55,7 @@
 					}
 				?>
 <?php if (Session::get_flash('success')): ?>
-				<div class="alert-message success">
+				<div class="alert-message success pagination-centered">
 					<p>
 					<?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
 					</p>
@@ -74,6 +73,7 @@
 <?php echo $content; ?>
 			</div>
 		</div>
+
 		<footer>
 			<p class="pagination-centered">Created by Chris McLean, Bryce Ruppel, Sherry B., and Elizabeth Williams</p>
 		</footer>

@@ -4,9 +4,6 @@
 
 
 <div class="container">
-
-	<!-- Load in default match if ($match) -->
-
 	<div id="menu">
 		<ul class="tempDashboard">
 			<li> 

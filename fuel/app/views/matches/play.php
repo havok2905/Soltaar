@@ -1,7 +1,7 @@
 <h2>Listing Match</h2>
 
-<div id="soltaar">
-</div>
+<!-- <div id="soltaar"> -->
+<!-- </div> -->
 <div id="main">
 	<div id="text">
 		<p>
@@ -32,9 +32,4 @@
 			<li>Ctrl</li>
 		</ul>
 	</div>
-
-	<div class="span16">
-	
-</div>
-
 </div>

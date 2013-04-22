@@ -30,7 +30,7 @@ Game.prototype.dealCards = function(deck)
 		if(x % width == 0)
 		{  
 			var id = "row" + idnum;
-			$("#main").append("<ol class='row' id='" + id + "'></ol>");
+			$("#main").append("<ol class='cardRow' id='" + id + "'></ol>");
 			idnum++;
 		}
 		$("#" + id).append("<li class='card' data-role=" + x + "><figure class='front'><embed src='../../assets/img/front.svg' type='image/svg+xml' /></figure><figure class='back'><embed src='../../../public/assets/img/"+deck[x].cardimage+"' type='image/svg+xml' /></figure></li>");

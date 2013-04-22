@@ -42,7 +42,6 @@
 		<div class="row">
 			<div class="span12" id="loggedIn">
 				<h1><?php echo $title; ?></h1>
-				<hr class="dashes">
 				<?php
                     if(Auth::instance()->check())
 					{
@@ -68,7 +67,9 @@
 					</p>
 				</div>
 <?php endif; ?>
-			</div>
+		</div>
+	</div>
+	<div class="row">
 			<div class="span16" id="loggedInContent">
 <?php echo $content; ?>
 			</div>

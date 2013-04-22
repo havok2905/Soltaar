@@ -73,14 +73,6 @@
 <?php echo $content; ?>
 			</div>
 		</div>
-		<div class="span16">
-			<ul class="game">
-			<!-- use as base to get cards -->
-			<?php foreach ($cards as $card => $value) { 
-				echo "<li class='card'>".Html::anchor('cards/view/'.$value["id"], $value["name"])."</li>";
-			} ?>
-			</ul>
-		</div>
 		<footer>
 			<p class="pagination-centered">Created by Chris McLean, Bryce Ruppel, Sherry B., and Elizabeth Williams</p>
 		</footer>
